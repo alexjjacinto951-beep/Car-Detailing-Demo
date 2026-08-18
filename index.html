@@ -122,6 +122,29 @@
       }
     }
 
+    /* Redirection Glow & Focus Animation for Booking Form */
+    .form-highlight-pulse {
+      animation: bookingFormFocus 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes bookingFormFocus {
+      0% {
+        transform: scale(0.98);
+        border-color: rgba(0, 82, 255, 1);
+        box-shadow: 0 0 60px rgba(0, 82, 255, 0.8), inset 0 0 20px rgba(0, 82, 255, 0.3);
+      }
+      50% {
+        transform: scale(1.015);
+        border-color: rgba(59, 130, 246, 1);
+        box-shadow: 0 0 45px rgba(0, 82, 255, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.2);
+      }
+      100% {
+        transform: scale(1);
+        border-color: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 10px 35px -10px rgba(0, 82, 255, 0.25);
+      }
+    }
+
     /* Nav tab indicators */
     .nav-btn::after {
       content: '';
@@ -172,7 +195,7 @@
 
       <!-- Action & Mobile Toggle -->
       <div class="flex items-center gap-4">
-        <button onclick="navigateTo('home-view'); setTimeout(scrollToBooking, 400);" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-400 active:scale-95">
+        <button onclick="triggerBookingRedirect()" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-400 active:scale-95">
           Book Now
         </button>
         <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
@@ -196,7 +219,7 @@
         <button onclick="navigateTo('about-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors duration-300">ABOUT US</button>
       </nav>
 
-      <button onclick="navigateTo('home-view'); setTimeout(scrollToBooking, 400); closeMobileNav();" class="w-full py-4 text-center rounded-xl bg-brand-blue text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_25px_#0052FF] active:scale-98 transition-transform">
+      <button onclick="triggerBookingRedirect(); closeMobileNav();" class="w-full py-4 text-center rounded-xl bg-brand-blue text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_25px_#0052FF] active:scale-98 transition-transform">
         REQUEST APPOINTMENT
       </button>
     </div>
@@ -239,7 +262,7 @@
           </p>
 
           <div class="flex flex-col sm:flex-row items-center gap-5 w-full justify-center">
-            <button onclick="scrollToBooking()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
+            <button onclick="triggerBookingRedirect()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
               <span>Book Now</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
@@ -560,7 +583,8 @@
             <p class="text-brand-silver text-xs sm:text-sm mt-3">Select your date, vehicle specs, and preferred package.</p>
           </div>
 
-          <div class="glass-card rounded-3xl p-6 sm:p-10 border-brand-border relative">
+          <!-- Animated Focus Container -->
+          <div id="bookingFormContainer" class="glass-card rounded-3xl p-6 sm:p-10 border-brand-border relative transition-all duration-500">
             
             <div class="mb-10">
               <div class="flex items-center justify-between text-[11px] font-extrabold uppercase tracking-widest text-brand-silver mb-3">
@@ -861,14 +885,14 @@
     let isNavigating = false;
 
     // Slow, Clean, Cinematic Multi-Page View Transition
-    function navigateTo(targetViewId) {
+    function navigateTo(targetViewId, callback) {
       if (isNavigating) return;
 
       const currentActiveView = document.querySelector('.page-view:not(.hidden)');
       const targetView = document.getElementById(targetViewId);
 
       if (!targetView || currentActiveView === targetView) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (callback) callback();
         return;
       }
 
@@ -906,27 +930,54 @@
           // Step 2: Bring in new target view with slow luxury glide
           targetView.classList.remove('hidden');
           targetView.classList.add('view-fade-in');
-          window.scrollTo({ top: 0, behavior: 'instant' });
 
           setTimeout(() => {
             isNavigating = false;
-          }, 650);
+            if (callback) callback();
+          }, 450);
         }, 320);
       } else {
         targetView.classList.remove('hidden');
         targetView.classList.add('view-fade-in');
         isNavigating = false;
+        if (callback) callback();
       }
     }
 
-    function scrollToBooking() {
-      const section = document.getElementById('booking-section');
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    // Direct Smooth Scroll and Highlight Pulse Animation for Booking Form
+    function triggerBookingRedirect() {
+      const isHome = !document.getElementById('home-view').classList.contains('hidden');
+
+      if (!isHome) {
+        navigateTo('home-view', () => {
+          executeBookingScrollAndPulse();
+        });
+      } else {
+        executeBookingScrollAndPulse();
+      }
+    }
+
+    function executeBookingScrollAndPulse() {
+      const formSection = document.getElementById('booking-section');
+      const formContainer = document.getElementById('bookingFormContainer');
+
+      if (formSection && formContainer) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Trigger slow glowing highlight pulse animation
+        formContainer.classList.remove('form-highlight-pulse');
+        void formContainer.offsetWidth; // force DOM reflow
+        formContainer.classList.add('form-highlight-pulse');
+
+        setTimeout(() => {
+          formContainer.classList.remove('form-highlight-pulse');
+        }, 1900);
+      }
     }
 
     function scrollToServices() {
       const section = document.getElementById('services-section');
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // Mobile Navigation Controls
@@ -1034,7 +1085,7 @@
           break;
         }
       }
-      scrollToBooking();
+      triggerBookingRedirect();
     }
 
     // Multi-Step Form Management
