@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXE DETAILZ | Haute Horlogerie of Automotive Care</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#070708',
+              surface: '#0E0E11',
+              card: '#141419',
+              border: '#23232C',
+              blue: '#0052FF',
+              blueGlow: '#0047DB',
+              electric: '#3B82F6',
+              silver: '#A1A1AA',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          animation: {
+            'glow-pulse': 'glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          },
+          keyframes: {
+            glow: {
+              '0%, 100%': { opacity: '0.8', filter: 'drop-shadow(0 0 15px rgba(0,82,255,0.6))' },
+              '50%': { opacity: '0.4', filter: 'drop-shadow(0 0 5px rgba(0,82,255,0.2))' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Selection */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #070708; }
+    ::-webkit-scrollbar-thumb { background: #23232C; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0052FF; }
+    ::selection { background: #0052FF; color: #fff; }
+
+    /* Glassmorphism & Neon */
+    .glass-nav {
+      background: rgba(7, 7, 8, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .glass-card {
+      background: rgba(20, 20, 25, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 82, 255, 0.6);
+      box-shadow: 0 10px 35px -10px rgba(0, 82, 255, 0.25);
+      transform: translateY(-4px);
+    }
+    .text-glow {
+      text-shadow: 0 0 24px rgba(0, 82, 255, 0.45);
+    }
+    .blue-glow-btn {
+      position: relative;
+      box-shadow: 0 0 25px rgba(0, 82, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+    .blue-glow-btn:hover {
+      box-shadow: 0 0 35px rgba(0, 82, 255, 0.7);
+    }
+
+    /* Grid lines background decoration */
+    .bg-tech-grid {
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="bg-brand-black text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-brand-blue selection:text-white bg-tech-grid">
+
+  <!-- ================= NAVIGATION ================= -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-2 group">
+        <span class="w-2.5 h-7 bg-brand-blue rounded-full shadow-[0_0_12px_#0052FF] transition-transform group-hover:scale-y-125"></span>
+        <div class="flex flex-col">
+          <span class="font-syne text-xl font-extrabold tracking-widest text-white leading-none">LUXE<span class="text-brand-blue">.</span>DETAILZ</span>
+          <span class="text-[9px] font-semibold tracking-[0.3em] text-brand-silver uppercase mt-1">Atelier Automobile</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#hero" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">Home</a>
+        <a href="#services" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">Services</a>
+        <a href="#art-of-detail" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">Pillars</a>
+        <a href="#interactive-lab" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">Studio Lab</a>
+        <a href="#gallery" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">Gallery</a>
+        <a href="#about" class="text-xs font-semibold tracking-widest uppercase text-slate-300 hover:text-brand-blue transition-colors">About</a>
+      </nav>
+
+      <!-- Action & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#booking" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-300">
+          Book Now
+        </a>
+        <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 bg-brand-black/95 backdrop-blur-2xl z-50 flex flex-col justify-between p-8 translate-x-full transition-transform duration-500 md:hidden">
+      <div class="flex items-center justify-between">
+        <span class="font-syne text-xl font-extrabold tracking-widest text-white">LUXE<span class="text-brand-blue">.</span>DETAILZ</span>
+        <button id="closeMobileMenu" class="text-slate-400 hover:text-white p-2">
+          <i data-lucide="x" class="w-7 h-7"></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-6 text-center">
+        <a href="#hero" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">HOME</a>
+        <a href="#services" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">SERVICES</a>
+        <a href="#art-of-detail" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">PILLARS</a>
+        <a href="#interactive-lab" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">STUDIO LAB</a>
+        <a href="#gallery" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">GALLERY</a>
+        <a href="#about" class="mobile-link font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue">ABOUT</a>
+      </nav>
+
+      <a href="#booking" class="mobile-link w-full py-4 text-center rounded-xl bg-brand-blue text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_25px_#0052FF]">
+        REQUEST APPOINTMENT
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= 1. HERO SECTION ================= -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <!-- Cinematic Dark Supercar Studio Backdrop -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=2400&auto=format&fit=crop" 
+        alt="Hypercar in studio dark lighting" 
+        class="w-full h-full object-cover object-center opacity-35 scale-105 transform animate-pulse duration-[8000ms]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
+      <div class="absolute inset-0 bg-radial-gradient from-transparent via-brand-black/40 to-brand-black"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center py-24 flex flex-col items-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface/90 border border-brand-border mb-8 shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-brand-blue animate-ping"></span>
+        <span class="text-[11px] font-bold tracking-[0.25em] text-brand-silver uppercase">Bespoke Concierge & Studio</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-syne text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight uppercase leading-[1.08] mb-6">
+        The Ultimate Standard In <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-brand-blue text-glow">Automotive Care</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="max-w-2xl text-base sm:text-lg text-brand-silver font-light leading-relaxed mb-10">
+        Engineered paint leveling, self-healing molecular coats, and surgical interior curation delivered to your private collection facility.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-5 w-full justify-center">
+        <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all flex items-center justify-center gap-3">
+          <span>Book Now</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white hover:text-brand-blue font-bold text-xs tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-2">
+          <span>Explore Services</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-brand-border/60 w-full max-w-4xl">
+        <div class="text-center">
+          <div class="font-syne text-2xl sm:text-3xl font-extrabold text-white">9H+ / 10H</div>
+          <div class="text-[10px] uppercase font-bold tracking-widest text-brand-silver mt-1">Molecular Shields</div>
+        </div>
+        <div class="text-center">
+          <div class="font-syne text-2xl sm:text-3xl font-extrabold text-white">&lt;0.5µm</div>
+          <div class="text-[10px] uppercase font-bold tracking-widest text-brand-silver mt-1">Correction Precision</div>
+        </div>
+        <div class="text-center">
+          <div class="font-syne text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+          <div class="text-[10px] uppercase font-bold tracking-widest text-brand-silver mt-1">Mobile Laboratory</div>
+        </div>
+        <div class="text-center">
+          <div class="font-syne text-2xl sm:text-3xl font-extrabold text-white">$150M+</div>
+          <div class="text-[10px] uppercase font-bold tracking-widest text-brand-silver mt-1">Exotics Preserved</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2. HERO TRANSITION (SOAP VISUAL) ================= -->
+  <section class="relative bg-brand-black overflow-hidden py-16 -mt-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="relative h-96 sm:h-[480px] rounded-3xl overflow-hidden border border-brand-border group">
+        <!-- Snow Foam Image -->
+        <img 
+          src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=2200&auto=format&fit=crop" 
+          alt="Snow foam wash cascading over luxury vehicle" 
+          class="w-full h-full object-cover object-center filter contrast-125 brightness-90 group-hover:scale-105 transition-transform duration-1000"
+        />
+        <!-- Ambient Liquid Gradients -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/60"></div>
+        <div class="absolute inset-0 bg-brand-blue/10 mix-blend-color-dodge"></div>
+        
+        <!-- Text overlay -->
+        <div class="absolute bottom-8 left-8 right-8 sm:bottom-12 sm:left-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-brand-blue text-xs font-extrabold tracking-[0.3em] uppercase">Decontamination Protocol</span>
+            <h3 class="font-syne text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">PH-BALANCED SNOW FOAM EMBEDDING</h3>
+          </div>
+          <div class="text-xs text-brand-silver tracking-widest uppercase">Pure Reverse-Osmosis H₂O System</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. SERVICES SECTION ================= -->
+  <section id="services" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <div class="text-brand-blue font-bold text-xs tracking-[0.3em] uppercase mb-2">Curated Treatments</div>
+          <h2 class="font-syne text-3xl sm:text-5xl font-black uppercase text-white tracking-tight">Our Expertise & Packages</h2>
+        </div>
+        
+        <!-- Package Toggle Pill -->
+        <div class="inline-flex p-1.5 rounded-2xl bg-brand-surface border border-brand-border">
+          <button id="toggleRoad" onclick="switchTier('road')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md">
+            Road Standard
+          </button>
+          <button id="toggleTrack" onclick="switchTier('track')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white">
+            Track / Concours Prep
+          </button>
+        </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Package 1: Signature Studio Refresh -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div>
+            <div class="text-[11px] font-extrabold tracking-widest text-brand-blue uppercase mb-2">Tier 01</div>
+            <h3 class="font-syne text-2xl font-bold text-white mb-2">Signature Preservation</h3>
+            <p class="text-xs text-brand-silver mb-6">Meticulous single-stage enhancement for maintained performance and daily vehicles.</p>
+            
+            <div class="font-syne text-3xl font-extrabold text-white mb-6">
+              <span class="text-sm font-normal text-brand-silver">Starting at</span> <span id="p1-price">$450</span>
+            </div>
+
+            <ul class="space-y-3.5 text-xs text-slate-300 mb-8" id="p1-list">
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> 24-Stage Citrus Snow Foam Decontamination</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Single-Stage Gloss Enhancement Machine Polish</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> 12-Month Sio2 Hydrophobic Sealant</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Full Alcantara & Leather Steam Conditioning</li>
+            </ul>
+          </div>
+
+          <button onclick="prefillBooking('Signature Preservation')" class="w-full py-3.5 rounded-xl border border-brand-blue/50 hover:bg-brand-blue text-white text-xs font-bold tracking-widest uppercase transition-all duration-300">
+            Select Package
+          </button>
+        </div>
+
+        <!-- Package 2: Ceramic Molecular Shield (Featured) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative border-brand-blue shadow-[0_0_30px_rgba(0,82,255,0.18)] bg-brand-surface/90">
+          <div class="absolute -top-3.5 right-8 bg-brand-blue text-white text-[10px] font-black uppercase tracking-[0.25em] px-4 py-1 rounded-full shadow-lg">
+            Most Popular
+          </div>
+          <div>
+            <div class="text-[11px] font-extrabold tracking-widest text-brand-blue uppercase mb-2">Tier 02</div>
+            <h3 class="font-syne text-2xl font-bold text-white mb-2">Molecular Ceramic Armor</h3>
+            <p class="text-xs text-brand-silver mb-6">Multi-stage paint correction with lifetime 9H ceramic diamond quartz bonding.</p>
+            
+            <div class="font-syne text-3xl font-extrabold text-white mb-6">
+              <span class="text-sm font-normal text-brand-silver">Starting at</span> <span id="p2-price">$1,250</span>
+            </div>
+
+            <ul class="space-y-3.5 text-xs text-slate-200 mb-8" id="p2-list">
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> 2-Stage Surgical Paint Correction (90%+ Swirl Removal)</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> 5-Year Certified 9H Dual-Layer Ceramic Shield</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Wheel Off-Car Barrel & Caliper Ceramic Coating</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Hydrophobic Windshield & Optical Glass Treatment</li>
+            </ul>
+          </div>
+
+          <button onclick="prefillBooking('Molecular Ceramic Armor')" class="w-full py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-300">
+            Select Package
+          </button>
+        </div>
+
+        <!-- Package 3: Concours Track & Bespoke Resto -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div>
+            <div class="text-[11px] font-extrabold tracking-widest text-brand-blue uppercase mb-2">Tier 03</div>
+            <h3 class="font-syne text-2xl font-bold text-white mb-2">Bespoke Concours Leveling</h3>
+            <p class="text-xs text-brand-silver mb-6">Orange-peel leveling wet sanding and dry-ice chassis restoration for hypercars.</p>
+            
+            <div class="font-syne text-3xl font-extrabold text-white mb-6">
+              <span class="text-sm font-normal text-brand-silver">Starting at</span> <span id="p3-price">$2,800</span>
+            </div>
+
+            <ul class="space-y-3.5 text-xs text-slate-300 mb-8" id="p3-list">
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Multi-Step Wet Sanding Clear Coat Orange-Peel Removal</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Cryogenic Dry-Ice Underbody & Suspension Detailing</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Self-Healing 10-Year Self-Repairing Graphene Matrix</li>
+              <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue shrink-0"></i> Full Cockpit Disassembly & Fine Leather Nourishment</li>
+            </ul>
+          </div>
+
+          <button onclick="prefillBooking('Bespoke Concours Leveling')" class="w-full py-3.5 rounded-xl border border-brand-blue/50 hover:bg-brand-blue text-white text-xs font-bold tracking-widest uppercase transition-all duration-300">
+            Select Package
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE LAB DEMO (BEFORE/AFTER & CALCULATOR) ================= -->
+  <section id="interactive-lab" class="py-20 bg-brand-surface/70 border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-brand-blue text-xs font-black tracking-[0.3em] uppercase">Interactive Laboratory</span>
+        <h2 class="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2">Precision In Real-Time</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Interactive Drag-to-Reveal Before/After Slider (7 Cols) -->
+        <div class="lg:col-span-7">
+          <div class="glass-card rounded-3xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold tracking-widest uppercase text-white">Paint Leveling Comparison</span>
+              <span class="text-[11px] text-brand-silver tracking-wider">DRAG SLIDER TO REVEAL</span>
+            </div>
+
+            <!-- Slider Wrapper -->
+            <div id="comparisonContainer" class="relative w-full h-80 sm:h-[390px] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-brand-border">
+              
+              <!-- AFTER IMAGE (Underneath) -->
+              <img 
+                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop" 
+                alt="Flawless ceramic finish Porsche" 
+                class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              />
+              <div class="absolute bottom-4 right-4 bg-brand-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-brand-border text-[10px] font-extrabold tracking-widest text-brand-blue uppercase">
+                After: 100% Mirror Gloss
+              </div>
+
+              <!-- BEFORE IMAGE (Clipped on top) -->
+              <div id="beforeImageWrapper" class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-brand-blue shadow-[0_0_20px_#0052FF]">
+                <img 
+                  src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=1600&auto=format&fit=crop" 
+                  alt="Swirled paint finish" 
+                  class="absolute top-0 left-0 max-w-none w-full h-full object-cover filter contrast-75 brightness-75 pointer-events-none"
+                  id="beforeImage"
+                />
+                <div class="absolute bottom-4 left-4 bg-brand-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-brand-border text-[10px] font-extrabold tracking-widest text-slate-400 uppercase">
+                  Before: Heavy Swirls & Oxidation
+                </div>
+              </div>
+
+              <!-- Draggable Handle Indicator -->
+              <div id="sliderHandle" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center shadow-[0_0_20px_#0052FF] pointer-events-none">
+                <i data-lucide="chevrons-left-right" class="w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Service Pricing Calculator Widget (5 Cols) -->
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-3xl p-7 border-brand-border">
+            <span class="text-brand-blue text-[11px] font-extrabold tracking-[0.25em] uppercase">Dynamic Estimator</span>
+            <h3 class="font-syne text-2xl font-bold text-white mt-1 mb-6">Vehicle Class Configurator</h3>
+
+            <!-- Body Type Selection -->
+            <label class="block text-xs font-semibold text-brand-silver uppercase tracking-wider mb-2">1. Select Body Frame</label>
+            <div class="grid grid-cols-2 gap-2 mb-6">
+              <button onclick="setCalcVehicle('coupe', 1.0)" class="calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left transition-all" data-type="coupe">
+                🏎️ Coupe / GT
+              </button>
+              <button onclick="setCalcVehicle('sedan', 1.15)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all" data-type="sedan">
+                🚘 Executive Sedan
+              </button>
+              <button onclick="setCalcVehicle('suv', 1.35)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all" data-type="suv">
+                🚙 SUV / Heavy 4x4
+              </button>
+              <button onclick="setCalcVehicle('exotic', 1.55)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all" data-type="exotic">
+                🏁 Exotic / Hypercar
+              </button>
+            </div>
+
+            <!-- Treatment Selection -->
+            <label class="block text-xs font-semibold text-brand-silver uppercase tracking-wider mb-2">2. Desired Treatment</label>
+            <select id="calcTreatment" onchange="calculateRealtimePrice()" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-xs text-white uppercase tracking-wider font-semibold focus:outline-none focus:border-brand-blue mb-6">
+              <option value="450">Signature Preservation Package ($450 base)</option>
+              <option value="1250" selected>Molecular Ceramic Armor ($1,250 base)</option>
+              <option value="2800">Bespoke Concours Leveling ($2,800 base)</option>
+            </select>
+
+            <!-- Dynamic Output Box -->
+            <div class="p-4 rounded-2xl bg-brand-black border border-brand-border flex items-center justify-between mb-6">
+              <div>
+                <span class="text-[10px] text-brand-silver uppercase font-bold tracking-widest block">Estimated Total</span>
+                <span class="text-[11px] text-emerald-400 font-semibold">Includes mobile studio setup</span>
+              </div>
+              <div id="dynamicPriceDisplay" class="font-syne text-3xl font-black text-white">$1,250</div>
+            </div>
+
+            <button onclick="transferToBooking()" class="w-full py-3.5 rounded-xl bg-white hover:bg-brand-blue hover:text-white text-black font-bold text-xs tracking-widest uppercase transition-all duration-300">
+              Apply Configuration To Booking
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. "WHAT WE DO" / VALUE PROPOSITION ================= -->
+  <section id="art-of-detail" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-brand-blue text-xs font-black tracking-[0.3em] uppercase">Uncompromising Standards</span>
+        <h2 class="font-syne text-3xl sm:text-5xl font-black uppercase text-white tracking-tight mt-2">The Art Of The Detail</h2>
+        <p class="text-brand-silver text-sm sm:text-base mt-4 font-light">
+          We reject assembly-line car washing. Every curve, stitch, and carbon weave is treated with surgical precision, utilizing calibrated gloss meters and digital micron gauges.
+        </p>
+      </div>
+
+      <!-- Pillar 1 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="order-2 lg:order-1 space-y-6">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-syne text-3xl font-bold text-white tracking-tight">Paint Correction & Leveling</h3>
+          <p class="text-brand-silver text-sm leading-relaxed">
+            Factory clears frequently exhibit heavy orange peel, buffer holograms, and micro-marring. Our optical rectification technicians use multi-stage rotary polishing and custom wool/foam interfaces to bring clear coat refraction to zero distortion.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Digital ultrasonic paint thickness profiling</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Elimination of RIDS (Random Isolated Deep Scratches)</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Mirror-like metallic flake pop restoration</li>
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="rounded-3xl overflow-hidden border border-brand-border h-80 sm:h-96 shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1200&auto=format&fit=crop" alt="Precision buffing on exotic paint" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="order-1">
+          <div class="rounded-3xl overflow-hidden border border-brand-border h-80 sm:h-96 shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop" alt="Ceramic coating beading water" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+          </div>
+        </div>
+        <div class="order-2 space-y-6">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-syne text-3xl font-bold text-white tracking-tight">Ceramic Molecular Coatings</h3>
+          <p class="text-brand-silver text-sm leading-relaxed">
+            We chemically bond silicon dioxide (SiO2) and graphene oxide directly into the micro-pores of clear coats. This establishes an impenetrable hydrophobic barrier that sheds acid rain, bird strikes, UV oxidation, and road brine effortlessly.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> 110° Water contact angle bead dynamics</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Extreme thermal tolerance up to 1,200°F (calipers/exhaust)</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Multi-year transferable warranty registry</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 space-y-6">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="truck" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-syne text-3xl font-bold text-white tracking-tight">Bespoke Mobility & Garage Studio</h3>
+          <p class="text-brand-silver text-sm leading-relaxed">
+            Avoid public roads and logistical transport stress. Our temperature-regulated mobile detailing laboratories feature quiet generators, pure deionized water tanks, and scissor lifts brought right to your private collection hanger or garage.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Zero water runoff clean-room technology</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Autonomous onboard electricity and lighting rigs</li>
+            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> White-glove insured security compliance</li>
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="rounded-3xl overflow-hidden border border-brand-border h-80 sm:h-96 shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1200&auto=format&fit=crop" alt="Luxury garage mobile detailing" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 5. INTEGRATED BOOKING FORM ================= -->
+  <section id="booking" class="py-24 relative bg-brand-surface/90 border-t border-brand-border">
+    <div class="max-w-4xl mx-auto px-6">
+      
+      <div class="text-center mb-12">
+        <span class="text-brand-blue text-xs font-black tracking-[0.3em] uppercase">Executive Reservation</span>
+        <h2 class="font-syne text-3xl sm:text-5xl font-black uppercase text-white tracking-tight mt-2">Commission Your Detail</h2>
+        <p class="text-brand-silver text-xs sm:text-sm mt-3">White-glove scheduling for private collections, race teams, and discerning drivers.</p>
+      </div>
+
+      <!-- Multi-step Glass Card -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border-brand-border relative">
+        
+        <!-- Step Progress Bar -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between text-[11px] font-extrabold uppercase tracking-widest text-brand-silver mb-3">
+            <span id="stepLabel1" class="text-brand-blue">1. Client Info</span>
+            <span id="stepLabel2">2. Vehicle Intel</span>
+            <span id="stepLabel3">3. Schedule & Confirm</span>
+          </div>
+          <div class="w-full h-1.5 bg-brand-border rounded-full overflow-hidden">
+            <div id="bookingProgressBar" class="w-1/3 h-full bg-brand-blue transition-all duration-500 shadow-[0_0_12px_#0052FF]"></div>
+          </div>
+        </div>
+
+        <form id="executiveBookingForm" onsubmit="handleBookingSubmit(event)">
+          
+          <!-- STEP 1: CLIENT DETAILS -->
+          <div id="formStep1" class="space-y-6">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4 text-brand-blue"></i> Personal Concierge Information
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Full Legal Name *</label>
+                <input type="text" required placeholder="Alexander Vance" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-brand-blue transition-colors">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Direct Phone Number *</label>
+                <input type="tel" required placeholder="+1 (555) 019-2834" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-brand-blue transition-colors">
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Executive Email Address *</label>
+              <input type="email" required placeholder="a.vance@privateoffice.com" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-brand-blue transition-colors">
+            </div>
+
+            <div class="flex justify-end pt-4">
+              <button type="button" onclick="goToStep(2)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all">
+                Next: Vehicle Specs &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: VEHICLE INTEL -->
+          <div id="formStep2" class="space-y-6 hidden">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="car" class="w-4 h-4 text-brand-blue"></i> Vehicle Specifications & Treatment
+            </h4>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Year *</label>
+                <input type="text" required placeholder="2024" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Make *</label>
+                <input type="text" required placeholder="Porsche" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Model *</label>
+                <input type="text" required placeholder="GT3 RS" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Paint Color / Wrap *</label>
+                <input type="text" required placeholder="Arctic Grey" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Selected Treatment Package *</label>
+              <select id="formPackageSelect" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+                <option value="Signature Preservation">Signature Preservation ($450+)</option>
+                <option value="Molecular Ceramic Armor" selected>Molecular Ceramic Armor ($1,250+)</option>
+                <option value="Bespoke Concours Leveling">Bespoke Concours Leveling ($2,800+)</option>
+              </select>
+            </div>
+
+            <div class="flex justify-between pt-4">
+              <button type="button" onclick="goToStep(1)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all">
+                &larr; Back
+              </button>
+              <button type="button" onclick="goToStep(3)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all">
+                Next: Logistics &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: SCHEDULE & CONFIRM -->
+          <div id="formStep3" class="space-y-6 hidden">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-brand-blue"></i> Logistics & Service Window
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Preferred Date *</label>
+                <input type="date" required class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Time Window *</label>
+                <select class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+                  <option>Morning Arrival (08:00 AM)</option>
+                  <option>Midday Arrival (12:30 PM)</option>
+                  <option>Custom VIP Studio Lockout</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Private Garage / Residence Address *</label>
+              <input type="text" required placeholder="742 Evergreen Hangar, Suite B, Beverly Hills, CA" class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-blue">
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-silver mb-2">Special Collector Directives / Clear Coat Sensitivities</label>
+              <textarea rows="2" placeholder="e.g., Matte carbon aero wing requires non-silicone matte sealer..." class="w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-brand-blue"></textarea>
+            </div>
+
+            <!-- Mandatory Luxury Deposit Checkbox -->
+            <label class="flex items-start gap-3 cursor-pointer pt-2">
+              <input type="checkbox" required class="mt-1 rounded bg-brand-black border-brand-border text-brand-blue focus:ring-0">
+              <span class="text-xs text-brand-silver leading-relaxed">
+                I understand a <strong class="text-white">luxury reservation deposit</strong> is required upon schedule confirmation to lock in the mobile studio van and technician crew.
+              </span>
+            </label>
+
+            <div class="flex flex-col sm:flex-row justify-between gap-4 pt-4">
+              <button type="button" onclick="goToStep(2)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all">
+                &larr; Back
+              </button>
+              <button type="submit" class="px-10 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-black text-xs tracking-[0.2em] uppercase blue-glow-btn animate-glow-pulse transition-all">
+                REQUEST EXECUTIVE BOOKING
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- Booking Success Confirmation Card -->
+        <div id="bookingSuccessMessage" class="hidden text-center py-12 space-y-4">
+          <div class="w-16 h-16 bg-brand-blue/20 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-blue shadow-[0_0_30px_#0052FF]">
+            <i data-lucide="check" class="w-8 h-8"></i>
+          </div>
+          <h3 class="font-syne text-2xl font-bold text-white uppercase">Reservation Request Received</h3>
+          <p class="text-xs text-brand-silver max-w-md mx-auto">
+            Your concierge coordinator has been assigned. You will receive an encrypted service dossier and calendar deposit link within 15 minutes.
+          </p>
+          <button onclick="resetBookingForm()" class="mt-4 px-6 py-2.5 rounded-xl border border-brand-border text-xs font-bold uppercase tracking-widest text-white hover:border-brand-blue">
+            Create Another Reservation
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECONDARY SUB-VIEW: GALLERY ================= -->
+  <section id="gallery" class="py-24 relative border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-brand-blue text-xs font-black tracking-[0.3em] uppercase">Private Portfolio</span>
+          <h2 class="font-syne text-3xl sm:text-5xl font-black uppercase text-white tracking-tight mt-1">Exotic Gallery</h2>
+        </div>
+        
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterGallery('all')" class="gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border bg-brand-blue text-white" data-cat="all">All</button>
+          <button onclick="filterGallery('correction')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white" data-cat="correction">Correction</button>
+          <button onclick="filterGallery('interiors')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white" data-cat="interiors">Interiors</button>
+          <button onclick="filterGallery('ceramic')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white" data-cat="ceramic">Ceramic Quartz</button>
+        </div>
+      </div>
+
+      <!-- Masonry Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+        
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="ceramic" onclick="openLightbox('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=1600&auto=format&fit=crop', 'McLaren 720S - 10H Ceramic Quartz Shield')">
+          <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=800&auto=format&fit=crop" alt="McLaren Ceramic Detailing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Ceramic Quartz</span>
+            <h4 class="font-syne text-lg font-bold text-white">McLaren 720S Performance</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="interiors" onclick="openLightbox('https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1600&auto=format&fit=crop', 'Ferrari Cockpit - Italian Leather Deep Restoration')">
+          <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop" alt="Luxury Car Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Interior Atelier</span>
+            <h4 class="font-syne text-lg font-bold text-white">Ferrari 812 Cockpit Sterilization</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="correction" onclick="openLightbox('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop', 'Porsche GT3 - Multi-Stage Orange Peel Wet Sanding')">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Porsche Paint Leveling" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Correction</span>
+            <h4 class="font-syne text-lg font-bold text-white">Porsche 911 GT3 Optical Clarity</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fullscreen Lightbox Modal -->
+    <div id="galleryLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden items-center justify-center p-4">
+      <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/70 hover:text-white p-2">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+      <div class="max-w-5xl w-full flex flex-col items-center">
+        <img id="lightboxImage" src="" alt="Enlarged gallery preview" class="max-h-[80vh] w-auto rounded-2xl border border-brand-border object-contain mb-4">
+        <p id="lightboxCaption" class="font-syne text-sm font-semibold tracking-widest uppercase text-brand-silver"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECONDARY SUB-VIEW: ABOUT US ================= -->
+  <section id="about" class="py-24 relative bg-brand-surface/50 border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-brand-blue text-xs font-black tracking-[0.3em] uppercase">The Atelier Heritage</span>
+          <h2 class="font-syne text-3xl sm:text-5xl font-black uppercase text-white tracking-tight">Obsession Over Perfection</h2>
+          <p class="text-brand-silver text-sm leading-relaxed">
+            Founded by former endurance racing engineers and bespoke paint craftsmen, LUXE DETAILZ was born to bridge the gap between scientific surface chemistry and collector-grade automotive artistry.
+          </p>
+          <p class="text-brand-silver text-sm leading-relaxed">
+            We treat automotive clear coats not as surfaces to be cleaned, but as fine watch casings to be leveled, polished, and shielded against time.
+          </p>
+          
+          <div class="pt-4 flex items-center gap-6">
+            <div>
+              <div class="font-syne text-2xl font-bold text-white">ISO 9001</div>
+              <div class="text-[10px] uppercase tracking-widest text-brand-silver">Certified Facility</div>
+            </div>
+            <div class="w-px h-10 bg-brand-border"></div>
+            <div>
+              <div class="font-syne text-2xl font-bold text-white">100% Guaranteed</div>
+              <div class="text-[10px] uppercase tracking-widest text-brand-silver">Defect Free Delivery</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="rounded-2xl overflow-hidden border border-brand-border h-56">
+              <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Mercedes AMG detailing">
+            </div>
+            <div class="glass-card p-5 rounded-2xl">
+              <h5 class="font-syne font-bold text-white text-sm">German Instrumentation</h5>
+              <p class="text-brand-silver text-[11px] mt-1">Rupes BigFoot polishers, Scangrip color match lighting & Defelsko gauges.</p>
+            </div>
+          </div>
+          <div class="space-y-4 pt-8">
+            <div class="glass-card p-5 rounded-2xl">
+              <h5 class="font-syne font-bold text-white text-sm">Clean-Room Chemistry</h5>
+              <p class="text-brand-silver text-[11px] mt-1">Gyeon, CarPro & Kamikaze Collection certified installer network.</p>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-brand-border h-56">
+              <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Exotic sports car">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-black border-t border-brand-border py-16">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-syne text-xl font-black tracking-widest text-white">LUXE<span class="text-brand-blue">.</span>DETAILZ</span>
+        <span class="text-[10px] tracking-[0.25em] text-brand-silver uppercase mt-1">High-End Automotive Preservation</span>
+      </div>
+
+      <div class="flex items-center gap-8 text-xs uppercase font-semibold tracking-widest text-brand-silver">
+        <a href="#hero" class="hover:text-brand-blue transition-colors">Home</a>
+        <a href="#services" class="hover:text-brand-blue transition-colors">Services</a>
+        <a href="#gallery" class="hover:text-brand-blue transition-colors">Gallery</a>
+        <a href="#booking" class="hover:text-brand-blue transition-colors">Executive Booking</a>
+      </div>
+
+      <div class="text-[11px] text-zinc-600 uppercase tracking-widest">
+        &copy; 2026 LUXE DETAILZ ATELIER. ALL RIGHTS RESERVED.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full');
+    });
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('translate-x-full');
+    });
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+    });
+
+    // Package Tier Switcher (Road Standard vs Track / Concours)
+    function switchTier(tier) {
+      const btnRoad = document.getElementById('toggleRoad');
+      const btnTrack = document.getElementById('toggleTrack');
+      
+      const p1Price = document.getElementById('p1-price');
+      const p2Price = document.getElementById('p2-price');
+      const p3Price = document.getElementById('p3-price');
+
+      if (tier === 'track') {
+        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md';
+        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white';
+        
+        p1Price.textContent = '$750';
+        p2Price.textContent = '$1,950';
+        p3Price.textContent = '$3,900';
+      } else {
+        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md';
+        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white';
+
+        p1Price.textContent = '$450';
+        p2Price.textContent = '$1,250';
+        p3Price.textContent = '$2,800';
+      }
+    }
+
+    // Interactive Drag-to-Reveal Before/After Slider Logic
+    const container = document.getElementById('comparisonContainer');
+    const beforeWrapper = document.getElementById('beforeImageWrapper');
+    const beforeImage = document.getElementById('beforeImage');
+    const handle = document.getElementById('sliderHandle');
+    let isSliding = false;
+
+    function updateSlider(xPos) {
+      const rect = container.getBoundingClientRect();
+      let offsetX = xPos - rect.left;
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+      
+      const percentage = (offsetX / rect.width) * 100;
+      beforeWrapper.style.width = percentage + '%';
+      beforeImage.style.width = rect.width + 'px';
+      handle.style.left = percentage + '%';
+    }
+
+    container.addEventListener('mousedown', () => isSliding = true);
+    window.addEventListener('mouseup', () => isSliding = false);
+    container.addEventListener('mousemove', (e) => {
+      if (!isSliding) return;
+      updateSlider(e.clientX);
+    });
+
+    // Touch support for mobile
+    container.addEventListener('touchstart', () => isSliding = true);
+    window.addEventListener('touchend', () => isSliding = false);
+    container.addEventListener('touchmove', (e) => {
+      if (!isSliding) return;
+      updateSlider(e.touches[0].clientX);
+    });
+
+    // Dynamic Pricing Estimator Widget Logic
+    let currentMultiplier = 1.0;
+
+    function setCalcVehicle(type, multiplier) {
+      currentMultiplier = multiplier;
+      document.querySelectorAll('.calc-btn').forEach(btn => {
+        if (btn.getAttribute('data-type') === type) {
+          btn.className = 'calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-blue bg-brand-blue/20 text-white text-xs font-bold tracking-wider uppercase text-left transition-all';
+        } else {
+          btn.className = 'calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all';
+        }
+      });
+      calculateRealtimePrice();
+    }
+
+    function calculateRealtimePrice() {
+      const basePrice = parseFloat(document.getElementById('calcTreatment').value);
+      const total = Math.round(basePrice * currentMultiplier);
+      document.getElementById('dynamicPriceDisplay').textContent = '$' + total.toLocaleString();
+    }
+
+    function transferToBooking() {
+      const select = document.getElementById('calcTreatment');
+      const selectedPkgName = select.options[select.selectedIndex].text.split(' (')[0];
+      prefillBooking(selectedPkgName);
+    }
+
+    function prefillBooking(pkgName) {
+      const pkgSelect = document.getElementById('formPackageSelect');
+      for (let i = 0; i < pkgSelect.options.length; i++) {
+        if (pkgSelect.options[i].value === pkgName || pkgSelect.options[i].text.includes(pkgName)) {
+          pkgSelect.selectedIndex = i;
+          break;
+        }
+      }
+      location.href = '#booking';
+    }
+
+    // Multi-Step Form Management
+    function goToStep(stepNumber) {
+      const step1 = document.getElementById('formStep1');
+      const step2 = document.getElementById('formStep2');
+      const step3 = document.getElementById('formStep3');
+      const progressBar = document.getElementById('bookingProgressBar');
+
+      step1.classList.add('hidden');
+      step2.classList.add('hidden');
+      step3.classList.add('hidden');
+
+      const label1 = document.getElementById('stepLabel1');
+      const label2 = document.getElementById('stepLabel2');
+      const label3 = document.getElementById('stepLabel3');
+
+      label1.className = 'text-brand-silver';
+      label2.className = 'text-brand-silver';
+      label3.className = 'text-brand-silver';
+
+      if (stepNumber === 1) {
+        step1.classList.remove('hidden');
+        progressBar.style.width = '33.3%';
+        label1.className = 'text-brand-blue font-bold';
+      } else if (stepNumber === 2) {
+        step2.classList.remove('hidden');
+        progressBar.style.width = '66.6%';
+        label2.className = 'text-brand-blue font-bold';
+      } else if (stepNumber === 3) {
+        step3.classList.remove('hidden');
+        progressBar.style.width = '100%';
+        label3.className = 'text-brand-blue font-bold';
+      }
+    }
+
+    function handleBookingSubmit(event) {
+      event.preventDefault();
+      document.getElementById('executiveBookingForm').classList.add('hidden');
+      document.getElementById('bookingSuccessMessage').classList.remove('hidden');
+    }
+
+    function resetBookingForm() {
+      document.getElementById('executiveBookingForm').reset();
+      document.getElementById('bookingSuccessMessage').classList.add('hidden');
+      document.getElementById('executiveBookingForm').classList.remove('hidden');
+      goToStep(1);
+    }
+
+    // Gallery Category Filtering & Lightbox Modal
+    function filterGallery(category) {
+      document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.className = 'gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-blue bg-brand-blue text-white';
+        } else {
+          btn.className = 'gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white';
+        }
+      });
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function openLightbox(imageUrl, caption) {
+      const modal = document.getElementById('galleryLightbox');
+      document.getElementById('lightboxImage').src = imageUrl;
+      document.getElementById('lightboxCaption').textContent = caption;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('galleryLightbox');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  </script>
+</body>
+</html>
