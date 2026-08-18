@@ -50,16 +50,16 @@
     ::selection { background: #0052FF; color: #fff; }
 
     .glass-nav {
-      background: rgba(7, 7, 8, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(7, 7, 8, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
     .glass-card {
       background: rgba(20, 20, 25, 0.65);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card:hover {
       border-color: rgba(0, 82, 255, 0.6);
@@ -71,7 +71,7 @@
     }
     .blue-glow-btn {
       box-shadow: 0 0 25px rgba(0, 82, 255, 0.4);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
     .blue-glow-btn:hover {
       box-shadow: 0 0 35px rgba(0, 82, 255, 0.7);
@@ -83,20 +83,61 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
-    /* Clean Subtle Page Transition */
-    .view-transition {
-      animation: smoothFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Cinematic Slow Page Shifting Animations */
+    .page-view {
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .view-fade-in {
+      animation: luxuryShiftIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    @keyframes smoothFadeUp {
+    .view-fade-out {
+      animation: luxuryShiftOut 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+    }
+
+    @keyframes luxuryShiftIn {
       0% {
         opacity: 0;
-        transform: translateY(12px) scale(0.995);
+        transform: translateY(24px) scale(0.985);
+        filter: blur(4px);
       }
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+        filter: blur(0px);
       }
+    }
+
+    @keyframes luxuryShiftOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.99);
+        filter: blur(3px);
+      }
+    }
+
+    /* Nav tab indicators */
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #0052FF;
+      box-shadow: 0 0 10px #0052FF;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(-50%);
+      border-radius: 9999px;
+    }
+    .nav-btn.active-nav::after {
+      width: 80%;
     }
   </style>
 </head>
@@ -104,12 +145,12 @@
 <body class="bg-brand-black text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-brand-blue selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between">
 
   <!-- ================= NAVIGATION ================= -->
-  <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-500">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
       <a href="javascript:void(0)" onclick="navigateTo('home-view')" class="flex items-center gap-2 group">
-        <span class="w-2.5 h-7 bg-brand-blue rounded-full shadow-[0_0_12px_#0052FF] transition-transform group-hover:scale-y-125"></span>
+        <span class="w-2.5 h-7 bg-brand-blue rounded-full shadow-[0_0_12px_#0052FF] transition-transform duration-500 group-hover:scale-y-125"></span>
         <div class="flex flex-col">
           <span class="font-syne text-xl font-extrabold tracking-widest text-white leading-none">CAR<span class="text-brand-blue">.</span>DETAILING</span>
           <span class="text-[9px] font-semibold tracking-[0.3em] text-brand-silver uppercase mt-1">Professional Care</span>
@@ -118,20 +159,20 @@
 
       <!-- Desktop Links -->
       <nav class="hidden md:flex items-center gap-10">
-        <button onclick="navigateTo('home-view')" id="nav-home" class="nav-btn relative py-1 text-xs font-bold tracking-widest uppercase text-brand-blue transition-all duration-300 hover:text-brand-blue">
+        <button onclick="navigateTo('home-view')" id="nav-home" class="nav-btn active-nav relative py-1 text-xs font-bold tracking-widest uppercase text-brand-blue transition-colors duration-400">
           Home
         </button>
-        <button onclick="navigateTo('gallery-view')" id="nav-gallery" class="nav-btn relative py-1 text-xs font-semibold tracking-widest uppercase text-slate-300 transition-all duration-300 hover:text-brand-blue">
+        <button onclick="navigateTo('gallery-view')" id="nav-gallery" class="nav-btn relative py-1 text-xs font-semibold tracking-widest uppercase text-slate-300 transition-colors duration-400 hover:text-brand-blue">
           Gallery
         </button>
-        <button onclick="navigateTo('about-view')" id="nav-about" class="nav-btn relative py-1 text-xs font-semibold tracking-widest uppercase text-slate-300 transition-all duration-300 hover:text-brand-blue">
+        <button onclick="navigateTo('about-view')" id="nav-about" class="nav-btn relative py-1 text-xs font-semibold tracking-widest uppercase text-slate-300 transition-colors duration-400 hover:text-brand-blue">
           About Us
         </button>
       </nav>
 
       <!-- Action & Mobile Toggle -->
       <div class="flex items-center gap-4">
-        <button onclick="navigateTo('home-view'); scrollToBooking();" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-300 active:scale-95">
+        <button onclick="navigateTo('home-view'); setTimeout(scrollToBooking, 400);" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold tracking-widest uppercase blue-glow-btn transition-all duration-400 active:scale-95">
           Book Now
         </button>
         <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
@@ -150,33 +191,33 @@
       </div>
 
       <nav class="flex flex-col gap-8 text-center">
-        <button onclick="navigateTo('home-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors">HOME</button>
-        <button onclick="navigateTo('gallery-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors">GALLERY</button>
-        <button onclick="navigateTo('about-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors">ABOUT US</button>
+        <button onclick="navigateTo('home-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors duration-300">HOME</button>
+        <button onclick="navigateTo('gallery-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors duration-300">GALLERY</button>
+        <button onclick="navigateTo('about-view'); closeMobileNav();" class="font-syne text-2xl font-bold tracking-wider text-slate-200 hover:text-brand-blue transition-colors duration-300">ABOUT US</button>
       </nav>
 
-      <button onclick="navigateTo('home-view'); scrollToBooking(); closeMobileNav();" class="w-full py-4 text-center rounded-xl bg-brand-blue text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_25px_#0052FF] active:scale-98 transition-transform">
+      <button onclick="navigateTo('home-view'); setTimeout(scrollToBooking, 400); closeMobileNav();" class="w-full py-4 text-center rounded-xl bg-brand-blue text-white font-bold tracking-widest uppercase text-sm shadow-[0_0_25px_#0052FF] active:scale-98 transition-transform">
         REQUEST APPOINTMENT
       </button>
     </div>
   </header>
 
   <!-- ================= MAIN CONTAINER ================= -->
-  <main class="flex-grow pt-20">
+  <main class="flex-grow pt-20 relative">
 
     <!-- ========================================================= -->
     <!-- 1. HOME VIEW -->
     <!-- ========================================================= -->
-    <div id="home-view" class="page-view view-transition">
+    <div id="home-view" class="page-view view-fade-in">
       
       <!-- 1. HERO SECTION -->
       <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <!-- Landing Background: clean.png with HD gloss and studio reflection tuning -->
+        <!-- Landing Background: clean.png -->
         <div class="absolute inset-0 z-0">
           <img 
             src="clean.png" 
             alt="Hand wiping down freshly polished dark blue paint with microfiber towel" 
-            class="w-full h-full object-cover object-[50%_30%] opacity-65 brightness-[0.92] contrast-[1.12] scale-100"
+            class="w-full h-full object-cover object-[50%_30%] opacity-65 brightness-[0.92] contrast-[1.12] scale-100 transition-transform duration-1000"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/55 to-brand-black/40"></div>
           <div class="absolute inset-0 bg-radial-gradient from-transparent via-brand-black/40 to-brand-black"></div>
@@ -198,11 +239,11 @@
           </p>
 
           <div class="flex flex-col sm:flex-row items-center gap-5 w-full justify-center">
-            <button onclick="scrollToBooking()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all flex items-center justify-center gap-3 active:scale-95">
+            <button onclick="scrollToBooking()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
               <span>Book Now</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
-            <button onclick="scrollToServices()" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white hover:text-brand-blue font-bold text-xs tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-2 active:scale-95">
+            <button onclick="scrollToServices()" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white hover:text-brand-blue font-bold text-xs tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 active:scale-95">
               <span>Explore Services</span>
             </button>
           </div>
@@ -243,10 +284,10 @@
             </div>
             
             <div class="inline-flex p-1.5 rounded-2xl bg-brand-surface border border-brand-border">
-              <button id="toggleRoad" onclick="switchTier('road')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md">
+              <button id="toggleRoad" onclick="switchTier('road')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-blue text-white shadow-md">
                 Standard Care
               </button>
-              <button id="toggleTrack" onclick="switchTier('track')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white">
+              <button id="toggleTrack" onclick="switchTier('track')" class="px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 text-brand-silver hover:text-white">
                 Showroom Prep
               </button>
             </div>
@@ -389,22 +430,22 @@
 
                 <label class="block text-xs font-semibold text-brand-silver uppercase tracking-wider mb-2">1. Select Vehicle Size</label>
                 <div class="grid grid-cols-2 gap-2 mb-6">
-                  <button onclick="setCalcVehicle('coupe', 1.0)" class="calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-blue bg-brand-blue/20 text-white text-xs font-bold tracking-wider uppercase text-left transition-all active:scale-95" data-type="coupe">
+                  <button onclick="setCalcVehicle('coupe', 1.0)" class="calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-blue bg-brand-blue/20 text-white text-xs font-bold tracking-wider uppercase text-left transition-all duration-300 active:scale-95" data-type="coupe">
                     🏎️ Sedan / Coupe
                   </button>
-                  <button onclick="setCalcVehicle('mid-suv', 1.2)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all active:scale-95" data-type="mid-suv">
+                  <button onclick="setCalcVehicle('mid-suv', 1.2)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all duration-300 active:scale-95" data-type="mid-suv">
                     🚙 Crossover / SUV
                   </button>
-                  <button onclick="setCalcVehicle('truck', 1.35)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all active:scale-95" data-type="truck">
+                  <button onclick="setCalcVehicle('truck', 1.35)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all duration-300 active:scale-95" data-type="truck">
                     🛻 Truck / 3-Row SUV
                   </button>
-                  <button onclick="setCalcVehicle('van', 1.5)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all active:scale-95" data-type="van">
+                  <button onclick="setCalcVehicle('van', 1.5)" class="calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all duration-300 active:scale-95" data-type="van">
                     🚐 Large Van / Heavy
                   </button>
                 </div>
 
                 <label class="block text-xs font-semibold text-brand-silver uppercase tracking-wider mb-2">2. Desired Package</label>
-                <select id="calcTreatment" onchange="calculateRealtimePrice()" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-xs text-white uppercase tracking-wider font-semibold focus:outline-none focus:border-brand-blue mb-6">
+                <select id="calcTreatment" onchange="calculateRealtimePrice()" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-xs text-white uppercase tracking-wider font-semibold focus:outline-none focus:border-brand-blue mb-6 transition-colors">
                   <option value="180">Express Detail ($180 base)</option>
                   <option value="380" selected>Full Detail & Polish ($380 base)</option>
                   <option value="850">Ceramic Coating Shield ($850 base)</option>
@@ -555,7 +596,7 @@
                 </div>
 
                 <div class="flex justify-end pt-4">
-                  <button type="button" onclick="goToStep(2)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all active:scale-95">
+                  <button type="button" onclick="goToStep(2)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all duration-300 active:scale-95">
                     Next: Vehicle Specs &rarr;
                   </button>
                 </div>
@@ -596,10 +637,10 @@
                 </div>
 
                 <div class="flex justify-between pt-4">
-                  <button type="button" onclick="goToStep(1)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all active:scale-95">
+                  <button type="button" onclick="goToStep(1)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 active:scale-95">
                     &larr; Back
                   </button>
-                  <button type="button" onclick="goToStep(3)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all active:scale-95">
+                  <button type="button" onclick="goToStep(3)" class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs tracking-widest uppercase blue-glow-btn transition-all duration-300 active:scale-95">
                     Next: Logistics &rarr;
                   </button>
                 </div>
@@ -643,10 +684,10 @@
                 </label>
 
                 <div class="flex flex-col sm:flex-row justify-between gap-4 pt-4">
-                  <button type="button" onclick="goToStep(2)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all active:scale-95">
+                  <button type="button" onclick="goToStep(2)" class="px-6 py-3.5 rounded-xl border border-brand-border text-brand-silver hover:text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 active:scale-95">
                     &larr; Back
                   </button>
-                  <button type="submit" class="px-10 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-black text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all active:scale-95">
+                  <button type="submit" class="px-10 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-black text-xs tracking-[0.2em] uppercase blue-glow-btn transition-all duration-300 active:scale-95">
                     SUBMIT BOOKING REQUEST
                   </button>
                 </div>
@@ -687,10 +728,10 @@
           </div>
           
           <div class="flex flex-wrap gap-2">
-            <button onclick="filterGallery('all')" class="gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-blue bg-brand-blue text-white active:scale-95 transition-transform" data-cat="all">All</button>
-            <button onclick="filterGallery('correction')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-transform" data-cat="correction">Paint Correction</button>
-            <button onclick="filterGallery('interiors')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-transform" data-cat="interiors">Interiors</button>
-            <button onclick="filterGallery('ceramic')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-transform" data-cat="ceramic">Ceramic Coatings</button>
+            <button onclick="filterGallery('all')" class="gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-blue bg-brand-blue text-white active:scale-95 transition-all duration-300" data-cat="all">All</button>
+            <button onclick="filterGallery('correction')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-all duration-300" data-cat="correction">Paint Correction</button>
+            <button onclick="filterGallery('interiors')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-all duration-300" data-cat="interiors">Interiors</button>
+            <button onclick="filterGallery('ceramic')" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-all duration-300" data-cat="ceramic">Ceramic Coatings</button>
           </div>
         </div>
 
@@ -698,7 +739,7 @@
           
           <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="ceramic" onclick="openLightbox('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=1600&auto=format&fit=crop', 'McLaren - 10H Ceramic Coating')">
             <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=800&auto=format&fit=crop" alt="Ceramic Detailing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 flex flex-col justify-end">
               <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Ceramic Protection</span>
               <h4 class="font-syne text-lg font-bold text-white">McLaren 720S</h4>
             </div>
@@ -706,7 +747,7 @@
 
           <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="interiors" onclick="openLightbox('https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1600&auto=format&fit=crop', 'Leather Interior Deep Conditioning')">
             <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop" alt="Interior Detailing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 flex flex-col justify-end">
               <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Interior Restoration</span>
               <h4 class="font-syne text-lg font-bold text-white">Full Leather Restoration</h4>
             </div>
@@ -714,7 +755,7 @@
 
           <div class="gallery-item group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-brand-border" data-category="correction" onclick="openLightbox('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop', 'Multi-Stage Paint Polishing')">
             <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Paint Leveling" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 flex flex-col justify-end">
               <span class="text-[10px] text-brand-blue uppercase font-bold tracking-widest">Paint Correction</span>
               <h4 class="font-syne text-lg font-bold text-white">Porsche 911 Gloss Enhancement</h4>
             </div>
@@ -817,38 +858,65 @@
   <script>
     lucide.createIcons();
 
-    // Clean Subtle View Transitions for Nav Links
-    function navigateTo(viewId) {
-      document.querySelectorAll('.page-view').forEach(view => {
-        view.classList.add('hidden');
-        view.classList.remove('view-transition');
-      });
+    let isNavigating = false;
 
-      const activeView = document.getElementById(viewId);
-      if (activeView) {
-        activeView.classList.remove('hidden');
-        void activeView.offsetWidth; // trigger reflow for smooth animation
-        activeView.classList.add('view-transition');
+    // Slow, Clean, Cinematic Multi-Page View Transition
+    function navigateTo(targetViewId) {
+      if (isNavigating) return;
+
+      const currentActiveView = document.querySelector('.page-view:not(.hidden)');
+      const targetView = document.getElementById(targetViewId);
+
+      if (!targetView || currentActiveView === targetView) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
       }
 
-      // Update Nav Link States
+      isNavigating = true;
+
+      // Update Nav Link Active States
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('text-brand-blue', 'font-bold');
+        btn.classList.remove('text-brand-blue', 'font-bold', 'active-nav');
         btn.classList.add('text-slate-300', 'font-semibold');
       });
 
-      if (viewId === 'home-view') {
-        document.getElementById('nav-home').classList.add('text-brand-blue', 'font-bold');
-        document.getElementById('nav-home').classList.remove('text-slate-300');
-      } else if (viewId === 'gallery-view') {
-        document.getElementById('nav-gallery').classList.add('text-brand-blue', 'font-bold');
-        document.getElementById('nav-gallery').classList.remove('text-slate-300');
-      } else if (viewId === 'about-view') {
-        document.getElementById('nav-about').classList.add('text-brand-blue', 'font-bold');
-        document.getElementById('nav-about').classList.remove('text-slate-300');
+      if (targetViewId === 'home-view') {
+        const btn = document.getElementById('nav-home');
+        btn.classList.add('text-brand-blue', 'font-bold', 'active-nav');
+        btn.classList.remove('text-slate-300');
+      } else if (targetViewId === 'gallery-view') {
+        const btn = document.getElementById('nav-gallery');
+        btn.classList.add('text-brand-blue', 'font-bold', 'active-nav');
+        btn.classList.remove('text-slate-300');
+      } else if (targetViewId === 'about-view') {
+        const btn = document.getElementById('nav-about');
+        btn.classList.add('text-brand-blue', 'font-bold', 'active-nav');
+        btn.classList.remove('text-slate-300');
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Step 1: Smoothly fade & shift out current view
+      if (currentActiveView) {
+        currentActiveView.classList.remove('view-fade-in');
+        currentActiveView.classList.add('view-fade-out');
+
+        setTimeout(() => {
+          currentActiveView.classList.add('hidden');
+          currentActiveView.classList.remove('view-fade-out');
+
+          // Step 2: Bring in new target view with slow luxury glide
+          targetView.classList.remove('hidden');
+          targetView.classList.add('view-fade-in');
+          window.scrollTo({ top: 0, behavior: 'instant' });
+
+          setTimeout(() => {
+            isNavigating = false;
+          }, 650);
+        }, 320);
+      } else {
+        targetView.classList.remove('hidden');
+        targetView.classList.add('view-fade-in');
+        isNavigating = false;
+      }
     }
 
     function scrollToBooking() {
@@ -882,15 +950,15 @@
       const p3Price = document.getElementById('p3-price');
 
       if (tier === 'track') {
-        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md';
-        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white';
+        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-blue text-white shadow-md';
+        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 text-brand-silver hover:text-white';
         
         p1Price.textContent = '$280';
         p2Price.textContent = '$580';
         p3Price.textContent = '$1,200';
       } else {
-        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all bg-brand-blue text-white shadow-md';
-        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all text-brand-silver hover:text-white';
+        btnRoad.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brand-blue text-white shadow-md';
+        btnTrack.className = 'px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 text-brand-silver hover:text-white';
 
         p1Price.textContent = '$180';
         p2Price.textContent = '$380';
@@ -938,9 +1006,9 @@
       currentMultiplier = multiplier;
       document.querySelectorAll('.calc-btn').forEach(btn => {
         if (btn.getAttribute('data-type') === type) {
-          btn.className = 'calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-blue bg-brand-blue/20 text-white text-xs font-bold tracking-wider uppercase text-left transition-all active:scale-95';
+          btn.className = 'calc-btn active-calc py-2.5 px-3 rounded-xl border border-brand-blue bg-brand-blue/20 text-white text-xs font-bold tracking-wider uppercase text-left transition-all duration-300 active:scale-95';
         } else {
-          btn.className = 'calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all active:scale-95';
+          btn.className = 'calc-btn py-2.5 px-3 rounded-xl border border-brand-border text-xs font-bold tracking-wider uppercase text-left text-brand-silver hover:text-white transition-all duration-300 active:scale-95';
         }
       });
       calculateRealtimePrice();
@@ -1020,9 +1088,9 @@
     function filterGallery(category) {
       document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
         if (btn.getAttribute('data-cat') === category) {
-          btn.className = 'gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-blue bg-brand-blue text-white active:scale-95 transition-transform';
+          btn.className = 'gallery-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-blue bg-brand-blue text-white active:scale-95 transition-all duration-300';
         } else {
-          btn.className = 'gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-transform';
+          btn.className = 'gallery-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase border border-brand-border text-brand-silver hover:text-white active:scale-95 transition-all duration-300';
         }
       });
 
